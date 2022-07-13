@@ -1,5 +1,7 @@
 # Catalysis
 
+[![app](https://github.com/catalysisdev/app/actions/workflows/app.yml/badge.svg)](https://github.com/catalysisdev/app/actions/workflows/app.yml)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
