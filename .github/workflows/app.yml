@@ -1,0 +1,34 @@
+name: app
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: app-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  DEBUG: 1
+
+jobs:
+  test:
+    name: Test with OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+    strategy:
+      matrix:
+        otp: ['20.3', '21.3', '22.2']
+        elixir: ['1.8.2', '1.9.4']
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+      - run: mix deps.get
+      - run: mix test
