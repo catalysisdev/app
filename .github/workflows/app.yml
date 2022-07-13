@@ -18,7 +18,7 @@ jobs:
     name: Test with OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
       matrix:
-        otp: ['20.3', '21.3', '22.2']
+        otp: ['25.0.2']
         elixir: ['1.13.4']
     runs-on: 'ubuntu-latest'
     timeout-minutes: 15
